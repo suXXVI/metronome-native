@@ -8,15 +8,15 @@ import {
   SafeAreaView,
   Platform,
 } from "react-native";
-
-import { StyledComponent } from "nativewind";
 import { Audio } from "expo-av";
+import { Dial } from 'react-native-dial';
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [sound, setSound] = useState();
-  const [bpm, setBpm] = useState(60); // Start with 60 BPM
+  const [bpm, setBpm] = useState(60);
+  const [prevDialValue, setPrevDialValue] = useState(0); // Track the previous dial value
 
   // getting click sound
   useEffect(() => {
@@ -51,27 +51,40 @@ export default function App() {
     }
   }, [isPlaying, sound, bpm]);
 
+  // Update BPM based on the direction of rotation
+  const handleDialChange = (value) => {
+    const delta = value - prevDialValue;
+    let newBpm = bpm;
+
+    // Clockwise rotation: Increase BPM within the limit (max 200)
+    if (delta > 0) {
+      newBpm = Math.min(200, newBpm + 1);
+    }
+    // Counterclockwise rotation: Decrease BPM within the limit (min 60)
+    else if (delta < 0) {
+      newBpm = Math.max(60, newBpm - 1);
+    }
+
+    setBpm(newBpm);
+    setPrevDialValue(value);
+  };
+
+
   // start metronome
   const handlePress = () => {
     setIsPlaying(!isPlaying);
     setCount(0);
   };
 
-  // increase bpm
-  const handleIncreaseBpm = () => {
-    setBpm((prev) => prev + 1);
-  };
-
-  // decrease bpm
-  const handleDecreaseBpm = () => {
-    setBpm((prev) => prev - 1);
-  };
-
   return (
     <View className="flex-1 bg-black w-full">
       <SafeAreaView>
-        <View className="flex flex-row justify-center items-center h-56 w-full mt-56">
-          <Text className="text-8xl font-bold text-white">{bpm}</Text>
+        <View className="flex flex-row justify-center items-center h-56 w-full mt-24">
+          <Text className="font-bold text-white text-9xl">{bpm}</Text>
+        </View>
+
+        <View className="w-1/2 flex flex-row justify-center mx-auto mt-10">
+          <Dial value={prevDialValue} onValueChange={handleDialChange} />
         </View>
 
         <View className="w-full flex flex-row justify-center">
@@ -79,15 +92,6 @@ export default function App() {
             <Text className="text-4xl font-bold text-white">
               {isPlaying ? "Stop" : "Play"}
             </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View className="w-1/2 flex flex-row justify-between mx-auto mt-10">
-          <TouchableOpacity onPress={handleDecreaseBpm}>
-            <Text className="text-2xl font-bold text-white">-</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleIncreaseBpm}>
-            <Text className="text-2xl font-bold text-white">+</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

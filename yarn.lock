@@ -5555,6 +5555,13 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-dial@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-dial/-/react-native-dial-1.0.12.tgz#1445e09ec97ee9df8ae0656501ab5a6e4b6bde96"
+  integrity sha512-8i8wt0vBZqsKSTUgr4sd+J7swvqMjif1RH3E7bpYlTQKpnLzRUpRZ9pFjv+eLOT50weERK1GYfLmQdvpPomp/Q==
+  dependencies:
+    lodash "^4.17.4"
+
 react-native@0.72.4:
   version "0.72.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.72.4.tgz#97b57e22e4d7657eaf4d1f62a678511fcf9bdda7"

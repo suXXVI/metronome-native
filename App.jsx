@@ -82,7 +82,7 @@ export default function App() {
   return (
     <View className="flex-1 bg-gray-300 w-full">
       <SafeAreaView>
-        <View className="flex flex-row justify-center items-center h-56 w-full mt-24">
+        <View className="flex flex-row justify-center items-center w-full mt-24 mb-24">
           <Text className="font-bold text-white text-9xl">{bpm}</Text>
         </View>
 
@@ -94,7 +94,7 @@ export default function App() {
           />
         </View>
 
-        <View className="w-full flex flex-row justify-center mx-auto mt-20">
+        <View className="w-full flex flex-row justify-center mx-auto mt-10">
           <TouchableOpacity onPress={handlePress}>
             <View justifyContent="center items-center">
               <Image source={isPlaying ? pauseIcon : playIcon} className="h-10 w-10" />

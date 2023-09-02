@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Platform,
+  Image
 } from "react-native";
 import { Audio } from "expo-av";
 import { Dial } from 'react-native-dial';
+import playIcon from './assets/play.png'
+import pauseIcon from './assets/pause.png'
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -77,21 +80,21 @@ export default function App() {
   };
 
   return (
-    <View className="flex-1 bg-black w-full">
+    <View className="flex-1 bg-gray-300 w-full">
       <SafeAreaView>
         <View className="flex flex-row justify-center items-center h-56 w-full mt-24">
           <Text className="font-bold text-white text-9xl">{bpm}</Text>
         </View>
 
-        <View className="w-1/2 flex flex-row justify-center mx-auto mt-10">
-          <Dial value={prevDialValue} onValueChange={handleDialChange} />
+        <View className="w-full flex flex-row justify-center mx-auto mt-10">
+          <Dial value={prevDialValue} onValueChange={handleDialChange} className="h-56 w-56 rounded-full" />
         </View>
 
-        <View className="w-full flex flex-row justify-center">
+        <View className="w-full flex flex-row justify-center mx-auto mt-20">
           <TouchableOpacity onPress={handlePress}>
-            <Text className="text-4xl font-bold text-white">
-              {isPlaying ? "Stop" : "Play"}
-            </Text>
+            <View justifyContent="center items-center">
+              <Image source={isPlaying ? pauseIcon : playIcon} className="h-10 w-10" />
+            </View>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

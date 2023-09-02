@@ -1,4 +1,4 @@
-# metronome app
+# metronome app (android/iOS)
 
 Built using react native and native-wind.
 

@@ -87,7 +87,7 @@ export default function App() {
         </View>
 
         <View className="w-full flex flex-row justify-center mx-auto mt-10">
-          <Dial value={prevDialValue} onValueChange={handleDialChange} className="h-56 w-56 rounded-full" />
+          <Dial value={prevDialValue} onValueChange={handleDialChange} className="rounded-full h-56 w-56 p-3" />
         </View>
 
         <View className="w-full flex flex-row justify-center mx-auto mt-20">
